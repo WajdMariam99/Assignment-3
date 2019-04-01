@@ -1,11 +1,8 @@
----------------------------------------------------------
+-----------------------------------------------------------------------------------------
 --
 -- main.lua
 --
 -----------------------------------------------------------------------------------------
-local Cost = display.newText( "Cost of Pizza", display.contentCenterX, display.contentCenterY - 150 , native.systemFont, 30 )
-Cost.id = "Cost of Pizza"
-
 local XtraLargeButton = display.newImageRect( "./XtraLargeButton.png", 125, 125 )
 XtraLargeButton.x = 250
 XtraLargeButton.y = 400
@@ -17,11 +14,16 @@ LargeButton.x = 75
 LargeButton.y = 400
 LargeButton.id = "Large Button"
 
-local NumOfToppingsTextfield = native.newTextField(160,250,150,40)
+local NumOfToppingsTextfield = native.newTextField(160,185,155,40)
 NumOfToppingsTextfield.id = "Number of Toppings"
 
-local Topping = display.newText("Enter Number of Toppings", display.contentCenterX,display.contentCenterY -50, native.systemFont, 20)
+local Topping = display.newText("Enter Number of Toppings", display.contentCenterX,display.contentCenterY -100, native.systemFont, 20)
 Topping.id = "Toppings"
+
+local CalculateButton = display.newImageRect ( "./CalculateButton.png", 150, 75)
+CalculateButton.x = 160
+CalculateButton.y = 265	
+CalculateButton.id = "calculate"
 
 
 function round(num, numDecimalPlaces)
@@ -30,13 +32,22 @@ function round(num, numDecimalPlaces)
 end
 
 local Cost
-local XtraLargeButton
-local LargeButton
 local NumOfToppingsTextfield
 local Topping
 
 local function calculatePrice (event)
-	local tax = subtotal * 1.13
+	
+	local total = subtotal + tax
+
+	local showSubtotal = display.newText( 'Subtotal: $' .. string.format("%.2f", subtotal), display.contentCenterX + 20, display.contentCenterY + -420, native.systemFont, 80 )
+     showSubtotal:setTextColor( 0, 0, 255)
+
+	local showTax = display.newText( 'Tax: $' .. string.format("%.2f", tax), display.contentCenterX + 20, display.contentCenterY + -620, native.systemFont, 80 )
+     showTax:setTextColor( 0, 0, 255 )
+    
+    local showTotal = display.newText( 'Total: $' .. string.format("%.2f", total), display.contentCenterX + 20, display.contentCenterY + -820, native.systemFont, 80 )
+     showTotal:setTextColor( 0, 0, 255 )
+
 end
 
 local function LargeButtonTouch( event ) 
@@ -100,9 +111,11 @@ errorText:setTextColor ( 0, 0, 255)
 end 
 
 
-LargeButton: addEventListener ("touch" , onLargeButtonTouch)
+LargeButton:addEventListener( "touch" , LargeButtonTouch)
 
-XtraLargeButton: addEventListener ("touch" , onXtraLargeButtonTouch)
+XtraLargeButton:addEventListener( "touch" , XtraLargeButtonTouch)
+
+CalculateButton:addEventListener ( "touch" , calculatePrice )
  
 
 
