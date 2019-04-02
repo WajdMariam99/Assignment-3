@@ -1,4 +1,4 @@
------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 --
 -- main.lua
 --
@@ -20,10 +20,7 @@ NumOfToppingsTextfield.id = "Number of Toppings"
 local Topping = display.newText("Enter Number of Toppings", display.contentCenterX,display.contentCenterY -100, native.systemFont, 20)
 Topping.id = "Toppings"
 
-local CalculateButton = display.newImageRect ( "./CalculateButton.png", 150, 75)
-CalculateButton.x = 160
-CalculateButton.y = 265	
-CalculateButton.id = "calculate"
+
 
 
 function round(num, numDecimalPlaces)
@@ -31,15 +28,20 @@ function round(num, numDecimalPlaces)
   return math.floor(num * mult + 0.5) / mult
 end
 
-local Cost
-local NumOfToppingsTextfield
-local Topping
+
+
+
 
 local function calculatePrice (event)
 	
-	local total = subtotal + tax
+    local subtotal = 0
+ 
+    local tax = 0
 
-	local showSubtotal = display.newText( 'Subtotal: $' .. string.format("%.2f", subtotal), display.contentCenterX + 20, display.contentCenterY + -420, native.systemFont, 80 )
+	local total = 0
+	
+
+	local showSubtotal = display.newText( "subtotal" .. string.format("%.2f", subtotal), display.contentCenterX + 20, display.contentCenterY + -420, native.systemFont, 80 )
      showSubtotal:setTextColor( 0, 0, 255)
 
 	local showTax = display.newText( 'Tax: $' .. string.format("%.2f", tax), display.contentCenterX + 20, display.contentCenterY + -620, native.systemFont, 80 )
@@ -52,7 +54,7 @@ end
 
 local function LargeButtonTouch( event ) 
 	
-	Toppings = tonumber (NumOfToppingsTextfield)
+	Toppings = tonumber (NumOfToppingsTextfield.text)
 
 	if Toppings == 1 then
 		subtotal = 6 + 1
@@ -73,7 +75,7 @@ local function LargeButtonTouch( event )
 	elseif Toppings == 4 then
 		subtotal = 6 + 3.35
 		calculatePrice ()
-
+print (tostring(subtotal))
     local errorText = display.newText('Too many Toppings', display.contentCenterX + 20, display.contentCenterY - 600, native.systemFont, 70)
 errorText:setTextColor ( 0, 0, 255)
     end 
@@ -82,7 +84,7 @@ end
 
 local function XtraLargeButtonTouch (event)
 	
-	Toppings = tonumber (NumOfToppingsTextfield)
+	Toppings = tonumber (NumOfToppingsTextfield.text)
 
 	if Toppings == 1 then 
 		subtotal = 10 + 1
@@ -111,14 +113,11 @@ errorText:setTextColor ( 0, 0, 255)
 end 
 
 
+
 LargeButton:addEventListener( "touch" , LargeButtonTouch)
 
 XtraLargeButton:addEventListener( "touch" , XtraLargeButtonTouch)
 
-CalculateButton:addEventListener ( "touch" , calculatePrice )
+
  
-
-
-
-
 
