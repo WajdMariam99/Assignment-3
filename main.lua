@@ -1,4 +1,4 @@
-------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 --
 -- main.lua
 --
@@ -23,6 +23,7 @@ Topping.id = "Toppings"
 
 
 
+
 function round(num, numDecimalPlaces)
   local mult = 10^(numDecimalPlaces or 2)
   return math.floor(num * mult + 0.5) / mult
@@ -34,8 +35,8 @@ end
 
 local function calculatePrice (event)
 	
-    local subtotal = 0
- 
+   local subtotal = 0
+
     local tax = 0
 
 	local total = 0
@@ -56,26 +57,33 @@ local function LargeButtonTouch( event )
 	
 	Toppings = tonumber (NumOfToppingsTextfield.text)
 
+
+    
 	if Toppings == 1 then
 		subtotal = 6 + 1
 		calculatePrice ()
+print (tostring(subtotal))
 
 	elseif Toppings == 0 then
 		subtotal = 6 + 0
 		calculatePrice ()
+print (tostring(subtotal))
 
 	elseif Toppings == 2 then
 		subtotal = 6 + 1.75
 		calculatePrice ()
+print (tostring(subtotal))
 
 	elseif Toppings == 3 then
 		subtotal = 6 + 2.5
 		calculatePrice ()
-	
+print (tostring(subtotal))
+
 	elseif Toppings == 4 then
 		subtotal = 6 + 3.35
 		calculatePrice ()
 print (tostring(subtotal))
+
     local errorText = display.newText('Too many Toppings', display.contentCenterX + 20, display.contentCenterY - 600, native.systemFont, 70)
 errorText:setTextColor ( 0, 0, 255)
     end 
@@ -86,25 +94,31 @@ local function XtraLargeButtonTouch (event)
 	
 	Toppings = tonumber (NumOfToppingsTextfield.text)
 
-	if Toppings == 1 then 
+
+    if Toppings == 1 then 
 		subtotal = 10 + 1
 		calculatePrice ()
+print (tostring(subtotal))
 
     elseif Toppings == 0 then
     	subtotal = 10 + 0
     	calculatePrice ()
+print (tostring(subtotal))
 
     elseif Toppings == 2 then
     	subtotal = 10 + 1.75
     	calculatePrice ()
+print (tostring(subtotal))
 
     elseif Toppings == 3 then
     	subtotal = 10 + 2.5
     	calculatePrice ()
+print (tostring(subtotal))
 
     elseif Toppings == 4 then
     	subtotal = 10 + 3.35
     	calculatePrice ()
+print (tostring(subtotal))
 
     local errorText = display.newText('Too many Toppings', display.contentCenterX + 20, display.contentCenterY - 600, native.systemFont, 70)
 errorText:setTextColor ( 0, 0, 255)
@@ -117,7 +131,6 @@ end
 LargeButton:addEventListener( "touch" , LargeButtonTouch)
 
 XtraLargeButton:addEventListener( "touch" , XtraLargeButtonTouch)
-
 
  
 
