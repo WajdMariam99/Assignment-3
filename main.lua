@@ -14,12 +14,11 @@ LargeButton.x = 75
 LargeButton.y = 400
 LargeButton.id = "Large Button"
 
-local NumOfToppingsTextfield = native.newTextField(160,185,155,40)
+local NumOfToppingsTextfield = native.newTextField(160,285,155,40)
 NumOfToppingsTextfield.id = "Number of Toppings"
 
-local Topping = display.newText("Enter Number of Toppings", display.contentCenterX,display.contentCenterY -100, native.systemFont, 20)
+local Topping = display.newText("Enter Number of Toppings", display.contentCenterX,display.contentCenterY - 25 , native.systemFont, 20)
 Topping.id = "Toppings"
-
 
 
 
@@ -31,24 +30,21 @@ end
 
 
 
-
-
 local function calculatePrice (event)
 	
-   local subtotal = 0
 
-    local tax = 0
+    local tax = subtotal * 0.13
 
-	local total = 0
+	local total = subtotal + tax 
 	
 
-	local showSubtotal = display.newText( "subtotal" .. string.format("%.2f", subtotal), display.contentCenterX + 20, display.contentCenterY + -420, native.systemFont, 80 )
+	local showSubtotal = display.newText( "subtotal: $" .. string.format("%.2f", subtotal), display.contentCenterX + 7, display.contentCenterY - 200  , native.systemFont, 25 )
      showSubtotal:setTextColor( 0, 0, 255)
 
-	local showTax = display.newText( 'Tax: $' .. string.format("%.2f", tax), display.contentCenterX + 20, display.contentCenterY + -620, native.systemFont, 80 )
+	local showTax = display.newText( 'Tax: $' .. string.format("%.2f", tax), display.contentCenterX + 7, display.contentCenterY - 150 , native.systemFont, 25 )
      showTax:setTextColor( 0, 0, 255 )
     
-    local showTotal = display.newText( 'Total: $' .. string.format("%.2f", total), display.contentCenterX + 20, display.contentCenterY + -820, native.systemFont, 80 )
+    local showTotal = display.newText( 'Total: $' .. string.format("%.2f", total), display.contentCenterX + 7, display.contentCenterY - 100, native.systemFont, 25 )
      showTotal:setTextColor( 0, 0, 255 )
 
 end
